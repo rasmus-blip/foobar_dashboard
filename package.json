@@ -1,0 +1,26 @@
+{
+  "name": "foobar_dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasmus-blip/foobar_dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rasmus-blip/foobar_dashboard/issues"
+  },
+  "homepage": "https://github.com/rasmus-blip/foobar_dashboard#readme",
+  "devDependencies": {
+    "sass": "^1.32.12",
+    "vite": "^2.3.0"
+  }
+}
