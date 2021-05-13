@@ -7,29 +7,84 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="Peter">
-      <p class="navn"></p>
-      <p class="status"></p>
-      <p class="serving"></p>
-      <p class="using_tap"></p>
-      <p class="detail"></p>
-    </div>
+    <main>
+      <section id="personel">
+        <h1>Personel</h1>
+        <ul></ul>
+      </section>
 
-    <div id="Dannie">
-      <p class="navn"></p>
-      <p class="status"></p>
-      <p class="serving"></p>
-      <p class="using_tap"></p>
-      <p class="detail"></p>
-    </div>
+      <section id="orders">
+        <h1>Orders</h1>
+        <ul></ul>
+      </section>
 
-    <div id="Jonas">
-      <p class="navn"></p>
-      <p class="status"></p>
-      <p class="serving"></p>
-      <p class="using_tap"></p>
-      <p class="detail"></p>
-    </div>
+      <section id="beers">
+        <article id="taps">
+          <!-- TODO: table -->
+        </article>
+
+        <article id="storage">
+          <!-- TODO: table -->
+        </article>
+      </section>
+
+      <section id="performance">
+        <h1>Bartender performance</h1>
+        <figure>
+          <!-- TODO: Indsæt svg // undersøg hvad passer bedst til grafen -->
+          <figcaption>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="todays_numbers">
+        <h1>Todays numbers</h1>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <img src="" alt="FooBar logo" id="logo" />
+      </section>
+    </main>
+
+    <template id="bartenders_temp">
+      <li>
+        <!-- Undersøg hvad ikonets tag -->
+        <h2></h2>
+        <p class="status">Status: <span></span></p>
+      </li>
+    </template>
+
+    <template id="orders_temp">
+      <li>
+        <div class="flex_container">
+          <h2></h2>
+          <!-- <div></div>  til ikon.. hvad gør vi?? -->
+          <figure>
+            <!-- <div></div>  til ikon.. hvad gør vi?? -->
+            <figcaption></figcaption>
+          </figure>
+        </div>
+        <p>
+          <!-- hver øl skal appendes i span, så de kan blive grønne -->
+        </p>
+      </li>
+    </template>
+
+    <template id="taps_temp">
+      <!-- måske tableBody... ellers ul -->
+    </template>
+
+    <template id="storage_temp">
+      <!-- måske tableBody... ellers ul -->
+    </template>
 
     <script type="module" src="/main.js"></script>
   </body>
