@@ -1,0 +1,25 @@
+@import "../abstracts/";
+
+.icon_l,
+.icon_s {
+  border-radius: 100%;
+  box-shadow: $medium_inner;
+  margin-right: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon_l {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+
+  //coloring of the svg gradiant
+  & svg stop {
+    --person-color: green;
+    stop-color: var(--person-color);
+  }
+}
+
+.icon_s {
+}
