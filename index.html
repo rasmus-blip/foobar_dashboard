@@ -7,10 +7,49 @@
     <title>Document</title>
   </head>
   <body>
+    <header>
+      <nav>
+        <button class="open" data-trigger="personel+performance"></button>
+        <button data-trigger="orders"></button>
+        <button data-trigger="performance"></button>
+        <button data-trigger="todays_numbers"></button>
+      </nav>
+    </header>
     <main>
-      <section id="personel">
+      <section id="personel" class="open">
         <h1>Personel</h1>
-        <ul></ul>
+        <ul>
+          <!-- placeholder -->
+
+          <li>
+            <div class="icon_l"></div>
+
+            <div>
+              <h2>Peter</h2>
+              <p class="status">Status: <span class="green">Ready</span></p>
+            </div>
+          </li>
+
+          <li>
+            <div class="icon_l"></div>
+
+            <div>
+              <h2>Peter</h2>
+              <p class="status">Status: <span class="green">Ready</span></p>
+            </div>
+          </li>
+
+          <li>
+            <div class="icon_l"></div>
+
+            <div>
+              <h2>Peter</h2>
+              <p class="status">Status: <span class="green">Ready</span></p>
+            </div>
+          </li>
+
+          <!-- placeholder -->
+        </ul>
       </section>
 
       <section id="orders">
@@ -28,7 +67,7 @@
         </article>
       </section>
 
-      <section id="performance">
+      <section id="performance" class="open">
         <h1>Bartender performance</h1>
         <figure>
           <!-- TODO: Indsæt svg // undersøg hvad passer bedst til grafen -->

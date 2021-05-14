@@ -1,0 +1,18 @@
+@import "../abstracts/";
+
+header {
+  background-color: $bg_clr;
+
+  & nav {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+@media only screen and (min-width: $tablet) {
+  header {
+    display: none;
+  }
+}

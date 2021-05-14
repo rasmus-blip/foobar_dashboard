@@ -1,0 +1,47 @@
+@import "../abstracts/";
+
+button {
+  display: block;
+  width: 70px;
+  height: 50px;
+
+  background-color: #e6ebef;
+  border: none;
+  border-radius: 5px;
+
+  position: relative;
+
+  cursor: pointer;
+
+  box-shadow: $medium_outer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+  }
+
+  &:nth-of-type(1)::after {
+    background: url("./icons/person.svg");
+  }
+
+  &:nth-of-type(2)::after {
+    background: url("./icons/order.svg");
+  }
+
+  &:nth-of-type(3)::after {
+    background: url("./icons/beer.svg");
+  }
+
+  &:nth-of-type(4)::after {
+    background: url("./icons/chart.svg");
+  }
+
+  &.open {
+    box-shadow: $medium_inner;
+  }
+}

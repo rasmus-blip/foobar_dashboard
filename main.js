@@ -1,5 +1,7 @@
 "use strict";
 
+import "./sass/style.scss";
+
 import { getJSON } from "./rest_actions.js";
 
 window.addEventListener("DOMContentLoaded", init);

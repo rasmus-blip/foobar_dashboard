@@ -5,45 +5,74 @@ body {
 }
 
 main {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-gap: 35px;
-  min-height: 100vh;
-  width: 100%;
-  padding: 35px;
+  padding: 20px;
 }
 
-section {
-  background-color: #e6ebef;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: $large_outer;
-
-  &#section1 {
-    grid-area: 1 / 1 / 4 / 2;
-  }
-
-  &#section2 {
-    grid-area: 4 / 1 / 6 / 2;
-  }
-
-  &#section3 {
-    grid-area: 1 / 2 / 5 / 3;
-  }
-
-  &#section4 {
-    grid-area: 1 / 3 / 5 / 4;
-  }
-
-  &#section5 {
-    grid-area: 5 / 2 / 6 / 4;
-  }
-}
-
-@media (min-aspect-ratio: 16/9) {
+@media only screen and (min-width: $tablet) {
   main {
-    //keeping min aspact ratio as 16/9
-    min-height: 56.25vw;
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 15px;
+    min-height: 100vh;
+
+    & #personel {
+      grid-area: 1 / 1 / 3 / 2;
+    }
+
+    & #orders {
+      grid-area: 1 / 2 / 3 / 3;
+    }
+
+    & #beers {
+      grid-area: 3 / 1 / 5 / 2;
+    }
+
+    & #performance {
+      grid-area: 3 / 2 / 5 / 3;
+    }
+
+    & #todays_numbers {
+      grid-area: 5 / 1 / 6 / 3;
+    }
+  }
+}
+
+@media only screen and (min-width: $desktop) {
+  main {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 35px;
+    min-height: 100vh;
+    width: 100%;
+    padding: 35px;
+
+    & #personel {
+      grid-area: 1 / 1 / 4 / 2;
+    }
+
+    & #orders {
+      grid-area: 1 / 2 / 5 / 3;
+    }
+
+    & #beers {
+      grid-area: 1 / 3 / 5 / 4;
+    }
+
+    & #performance {
+      grid-area: 4 / 1 / 6 / 2;
+    }
+
+    & #todays_numbers {
+      grid-area: 5 / 2 / 6 / 4;
+    }
+  }
+
+  @media (min-aspect-ratio: 16/9) {
+    main {
+      //keeping min aspact ratio as 16/9
+      min-height: 56.25vw;
+    }
   }
 }

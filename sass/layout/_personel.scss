@@ -1,0 +1,10 @@
+@import "../abstracts";
+
+#personel ul {
+  //   background-color: blue;
+
+  & li {
+    display: flex;
+    margin-top: 40px;
+  }
+}

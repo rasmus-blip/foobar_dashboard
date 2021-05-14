@@ -1,0 +1,23 @@
+@import "../abstracts/";
+
+section {
+  background-color: $bg_clr;
+  display: none;
+
+  &.open {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: $tablet) {
+  section {
+    display: block;
+
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: $large_outer;
+  }
+}
+
+@media only screen and (min-width: $desktop) {
+}
