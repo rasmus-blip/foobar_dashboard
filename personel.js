@@ -1,7 +1,7 @@
 export function displayBartenders(bartenders) {
   const container = document.querySelector("#personel ul");
   const temp = document.querySelector("#bartenders_temp");
-  console.log(bartenders);
+
 
   bartenders.forEach((bartender) => {
     const klon = temp.cloneNode(true).content;
@@ -18,7 +18,7 @@ export function displayBartenders(bartenders) {
 
     container.appendChild(klon);
 
-    console.log(klon);
+    
   });
 }
 
