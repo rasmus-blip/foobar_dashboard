@@ -28,6 +28,7 @@ function displayDataInit(data) {
 
   //TODO ny function for hvert objekt
 }
+
 function displayBartenders(bartenders) {
   const container = document.querySelector("#personel ul");
   const temp = document.querySelector("#bartenders_temp");
@@ -51,6 +52,7 @@ function displayBartenders(bartenders) {
     console.log(klon);
   });
 }
+
 function getDetailText(bartender) {
   if (bartender.statusDetail === "pourBeer") {
     return `Pouring beer on tap #${bartender.usingTap}, for order #${bartender.servingCustomer}`;
@@ -64,8 +66,12 @@ function getDetailText(bartender) {
     return `Receiving payment from order #${bartender.servingCustomer}`;
   }
 
-  if (bartender.statusDetail === "startSercing") {
+  if (bartender.statusDetail === "startServing") {
     return `Preparing order #${bartender.servingCustomer}`;
+  }
+
+  if (bartender.statusDetail === "replaceKeg") {
+    return `Replacing keg on tap #${bartender.usingTap}`;
   }
 }
 
@@ -77,12 +83,12 @@ function determineDataToUpdate(newData, oldData) {
 function getDataToUpdate(newData, oldData, id) {
   const result = [];
 
-  oldData.forEach((oldObject) => {
-    const objectToUpdate = newData.filter(compareData);
+  newData.forEach((newObject) => {
+    const objectToUpdate = oldData.filter(compareData);
 
-    function compareData(newObject) {
+    function compareData(oldObject) {
       if (JSON.stringify(oldObject) !== JSON.stringify(newObject) && oldObject[id] === newObject[id]) {
-        return true;
+        return newObject;
       } else {
         return false;
       }
