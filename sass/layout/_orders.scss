@@ -1,1 +1,9 @@
 @import "../abstracts";
+
+#orders .flex_container {
+  justify-content: space-between;
+}
+
+#orders li {
+  margin-top: 40px;
+}

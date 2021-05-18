@@ -1,5 +1,9 @@
 @import "../abstracts/";
 
+.flex_container {
+  display: flex;
+}
+
 section {
   background-color: $bg_clr;
   display: none;
