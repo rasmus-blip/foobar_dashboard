@@ -7,7 +7,10 @@ export function getDataToUpdate(newData, oldData, id) {
     const objectToUpdate = oldData.filter(compareData);
 
     function compareData(oldObject) {
-      if (JSON.stringify(oldObject) !== JSON.stringify(newObject) && oldObject[id] === newObject[id]) {
+      if (
+        JSON.stringify(oldObject) !== JSON.stringify(newObject) &&
+        oldObject[id] === newObject[id]
+      ) {
         return newObject;
       } else {
         return false;
@@ -42,28 +45,6 @@ export function getDataToAppend(newData, oldData, id) {
         result.splice(objectIndex, 1);
       }
     });
-  });
-
-  return result;
-}
-
-function findIdenticalObjects(newData, oldData, id) {
-  const result = [];
-
-  newData.forEach((newObject) => {
-    const identicalObject = oldData.filter(compareData);
-
-    function compareData(oldObject) {
-      if (newObject[id] === oldObject[id]) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    if (identicalObject[0] !== undefined) {
-      result.push(identicalObject[0]);
-    }
   });
 
   return result;

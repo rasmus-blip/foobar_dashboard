@@ -7,8 +7,9 @@ export function displayBartenders(bartenders) {
     const klon = temp.cloneNode(true).content;
 
     klon.querySelector("li").dataset.id = bartender.name.toLowerCase();
+    klon.querySelector("li").dataset.serving = bartender.servingCustomer;
     klon.querySelector("h2").textContent = bartender.name;
-
+    
     if (bartender.status === "WORKING") {
       klon.querySelector(".status span").textContent = getDetailText(bartender);
     } else {
@@ -24,6 +25,7 @@ export function displayBartenders(bartenders) {
 
 
 function getDetailText(bartender) {
+
   if (bartender.statusDetail === "pourBeer") {
     return `Pouring beer on tap #${bartender.usingTap}, for order #${bartender.servingCustomer}`;
   }
@@ -43,6 +45,14 @@ function getDetailText(bartender) {
   if (bartender.statusDetail === "replaceKeg") {
     return `Replacing keg on tap #${bartender.usingTap}`;
   }
+
+  if (bartender.statusDetail === "reserveTap") {
+    return `Is waiting for a tap to be free`;
+  }
+
+   if (bartender.statusDetail === "waiting") {
+     return `Is waiting for an order`;
+   }
 }
 
 
