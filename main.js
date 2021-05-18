@@ -28,7 +28,7 @@ async function init() {
 
   displayDataInit(newData);
 
-  setTimeout(updateDataArrays, 5000);
+  setInterval(updateDataArrays, 5000);
 
   async function updateDataArrays() {
     oldData = newData;
@@ -64,11 +64,7 @@ function determineDataToAppend(newData, oldData) {
 }
 
 function determineDataToUpdate(newData, oldData) {
-  const bartendersToUpdate = getDataToUpdate(
-    newData.bartenders,
-    oldData.bartenders,
-    "name"
-  );
+  const bartendersToUpdate = getDataToUpdate(newData.bartenders, oldData.bartenders, "name");
   updateBartenders(bartendersToUpdate);
   updateServings(newData.serving, newData.bartenders);
 

@@ -4,6 +4,11 @@
   justify-content: space-between;
 }
 
+#orders ol {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 #orders li {
   margin-top: 40px;
 }

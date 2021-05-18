@@ -1,5 +1,5 @@
 export function appendOrders(orders) {
-  const container = document.querySelector("#orders ul");
+  const container = document.querySelector("#orders ol");
   const temp = document.querySelector("#orders_temp");
 
   orders.forEach((order) => {
@@ -17,16 +17,11 @@ export function updateServings(servings, bartenders) {
     //TODO: make this less ninja
     const servedBy = bartenders.filter(compareData)[0].name.toLowerCase();
     console.log(servedBy);
-    const container = document.querySelector(
-      `#orders li[data-id="${serving.id}"]`
-    );
+    const container = document.querySelector(`#orders li[data-id="${serving.id}"]`);
 
     container.querySelector(".bartender_icon").dataset.servedBy = servedBy;
-    //TODO: fetch svg plz, looks like shit...
     container.querySelector(".bartender_icon").classList.remove("hide");
-    document.querySelector(
-      `#orders li[data-id="${serving.id}"] p`
-    ).style.color = "teal";
+    document.querySelector(`#orders li[data-id="${serving.id}"] p`).style.color = "teal";
 
     function compareData(bartender) {
       if (serving.id === bartender.servingCustomer) {
@@ -53,7 +48,7 @@ function buildOrderString(order) {
 export function updateOrders(orders) {}
 
 export function removeOrders(orders) {
-  const container = document.querySelector("#orders ul");
+  const container = document.querySelector("#orders ol");
   orders.forEach((order) => {
     container.querySelector(`li[data-id="${order.id}"]`).remove();
   });
