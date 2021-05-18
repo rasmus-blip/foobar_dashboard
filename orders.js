@@ -1,3 +1,5 @@
+import timeago from "epoch-timeago";
+
 export function appendOrders(orders) {
   const container = document.querySelector("#orders ol");
   const temp = document.querySelector("#orders_temp");
@@ -16,7 +18,6 @@ export function updateServings(servings, bartenders) {
   servings.forEach((serving) => {
     //TODO: make this less ninja
     const servedBy = bartenders.filter(compareData)[0].name.toLowerCase();
-    console.log(servedBy);
     const container = document.querySelector(`#orders li[data-id="${serving.id}"]`);
 
     container.querySelector(".bartender_icon").dataset.servedBy = servedBy;
@@ -46,6 +47,20 @@ function buildOrderString(order) {
 }
 
 export function updateOrders(orders) {}
+
+export function calcWaitingTime(orders) {
+  orders.forEach((order) => {
+    const currentEpoch = Date.now();
+    const differenceInMin = ((currentEpoch - order.startTime) / 60000).toFixed(2);
+    const timeInString = differenceInMin.toString();
+    const indexOfDot = timeInString.indexOf(".");
+    const secondsInstring = timeInString.substring(indexOfDot + 1);
+    const seconds = (Number(secondsInstring) * 0.6).toFixed(0);
+    const minute = timeInString.substring(0, indexOfDot);
+
+    console.log(minute + ":" + seconds);
+  });
+}
 
 export function removeOrders(orders) {
   const container = document.querySelector("#orders ol");
