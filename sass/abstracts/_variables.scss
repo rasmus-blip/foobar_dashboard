@@ -1,8 +1,23 @@
+// COLORS
+$bg_clr: #e6ebef;
+$heading_clr: #cb70a1;
+$para_clr: #898ca1;
+
+$dannie: #e59f5e;
+$peter: #5b81cc;
+$jonas: #56dcc4;
+
+$green_clr: #2cdc90;
+$yellow_clr: #ffaa4e;
+$red_clr: #ff545d;
+
 // tints
 $light: #f7fbfe;
 $shadow: #c4c8cb;
 
-//box-shadow
+//
+//
+//SHADOWS
 //mains
 $large_outer: 5px 5px 10px $shadow, -5px -5px 10px $light;
 $medium_outer: 2px 2px 4px $shadow, -2px -2px 4px $light;
@@ -12,3 +27,9 @@ $small_outer: 1px 1px 2px $shadow, -1px -1px 2px $light;
 //bars
 $vertical_inner: inset 3px 1px 4px $shadow, inset -3px -1px 4px $light;
 $horisontal_shadow: inset 0px 1px 2px $shadow, inset 0px -1px 2px $light;
+
+//
+//
+//MEDIAS
+$tablet: 650px;
+$desktop: 1100px;

@@ -2,16 +2,18 @@
 
 button {
   display: block;
+  background-color: #e6ebef;
+  border: none;
+  cursor: pointer;
+}
+
+header button {
   width: 70px;
   height: 50px;
 
-  background-color: #e6ebef;
-  border: none;
   border-radius: 5px;
 
   position: relative;
-
-  cursor: pointer;
 
   box-shadow: $medium_outer;
 
@@ -42,6 +44,20 @@ button {
   }
 
   &.open {
+    box-shadow: $medium_inner;
+  }
+}
+
+#beers button {
+  width: 40%;
+  padding: 10px 0;
+  border-radius: 7px;
+  color: $heading_clr;
+  background-color: $bg_clr;
+
+  box-shadow: $medium_outer;
+
+  &.clicked {
     box-shadow: $medium_inner;
   }
 }
