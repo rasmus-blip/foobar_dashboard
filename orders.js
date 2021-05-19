@@ -1,5 +1,3 @@
-import timeago from "epoch-timeago";
-
 export function appendOrders(orders) {
   const container = document.querySelector("#orders ol");
   const temp = document.querySelector("#orders_temp");
@@ -14,7 +12,13 @@ export function appendOrders(orders) {
   });
 }
 
-export function updateServings(servings, bartenders) {
+export function updateOrders(servings, bartenders, newOrderList) {
+  updateServings(servings, bartenders);
+
+  newOrderList.forEach(calcWaitingTime);
+}
+
+function updateServings(servings, bartenders) {
   servings.forEach((serving) => {
     //TODO: make this less ninja
     const servedBy = bartenders.filter(compareData)[0].name.toLowerCase();
@@ -46,20 +50,33 @@ function buildOrderString(order) {
   return result;
 }
 
-export function updateOrders(orders) {}
+function calcWaitingTime(order) {
+  //Get difference between now and ordertime, in minutes.decimals
+  const currentEpoch = Date.now();
+  const differenceInMin = ((currentEpoch - order.startTime) / 60000).toFixed(2);
 
-export function calcWaitingTime(orders) {
-  orders.forEach((order) => {
-    const currentEpoch = Date.now();
-    const differenceInMin = ((currentEpoch - order.startTime) / 60000).toFixed(2);
-    const timeInString = differenceInMin.toString();
-    const indexOfDot = timeInString.indexOf(".");
-    const secondsInstring = timeInString.substring(indexOfDot + 1);
-    const seconds = (Number(secondsInstring) * 0.6).toFixed(0);
-    const minute = timeInString.substring(0, indexOfDot);
+  // Convert to string and separate the decimals from minutes
+  const timeInString = differenceInMin.toString();
+  const indexOfDot = timeInString.indexOf(".");
+  const minute = timeInString.substring(0, indexOfDot);
+  const secondsInstring = timeInString.substring(indexOfDot + 1);
 
-    console.log(minute + ":" + seconds);
-  });
+  // Convert decimals string to number and calc to seconds
+  let seconds = (Number(secondsInstring) * 0.6).toFixed(0);
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  const result = minute + ":" + seconds;
+
+  const container = document.querySelector(`#orders [data-id="${order.id}"]`);
+  container.querySelector("figcaption").textContent = result;
+
+  if (differenceInMin > 1) {
+    container.classList.add("red");
+  } else if (differenceInMin > 0.5) {
+    container.classList.add("yellow");
+  }
 }
 
 export function removeOrders(orders) {

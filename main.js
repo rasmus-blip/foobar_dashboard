@@ -10,10 +10,8 @@ import { updateBartenders } from "./personel.js";
 
 //orders.js
 import { updateOrders } from "./orders.js";
-import { calcWaitingTime } from "./orders.js";
 import { appendOrders } from "./orders.js";
 import { removeOrders } from "./orders.js";
-import { updateServings } from "./orders.js";
 
 //updateUI.js
 import { getDataToUpdate } from "./updateUI.js";
@@ -29,7 +27,7 @@ async function init() {
 
   displayDataInit(newData);
 
-  setTimeout(updateDataArrays, 5000);
+  setInterval(updateDataArrays, 5000);
 
   async function updateDataArrays() {
     oldData = newData;
@@ -70,9 +68,8 @@ function determineDataToUpdate(newData, oldData) {
   updateBartenders(bartendersToUpdate);
 
   //Orders
-  updateServings(newData.serving, newData.bartenders);
   const newOrderList = createOrdersArray(newData.serving, newData.queue);
-  calcWaitingTime(newOrderList);
+  updateOrders(newData.serving, newData.bartenders, newOrderList);
 
   // const newOrderList = createOrdersArray(newData.serving, newData.queue);
   // const oldOrderList = createOrdersArray(oldData.serving, oldData.queue);

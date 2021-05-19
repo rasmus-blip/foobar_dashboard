@@ -41,3 +41,17 @@
 [data-id="jonas"] svg {
   fill: $jonas;
 }
+
+.time_icon svg {
+  fill: $para_clr;
+
+  transition: fill 1s;
+}
+
+.yellow .time_icon svg {
+  fill: $yellow_clr;
+}
+
+.red .time_icon svg {
+  fill: $red_clr;
+}
