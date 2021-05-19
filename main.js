@@ -13,6 +13,13 @@ import { updateOrders } from "./orders.js";
 import { appendOrders } from "./orders.js";
 import { removeOrders } from "./orders.js";
 
+//taps.js
+import { toggleBeerSections } from "./beers.js";
+import { appendTaps } from "./beers.js";
+import { updateTaps } from "./beers.js";
+import { appendStorage } from "./beers.js";
+import { updateStorage } from "./beers.js";
+
 //updateUI.js
 import { getDataToUpdate } from "./updateUI.js";
 import { getDataToAppend } from "./updateUI.js";
@@ -26,6 +33,11 @@ async function init() {
   let oldData = [];
 
   displayDataInit(newData);
+
+  const beerSectionBtns = document.querySelectorAll("#beers button");
+  beerSectionBtns.forEach((btn) => {
+    btn.addEventListener("click", toggleBeerSections);
+  });
 
   setInterval(updateDataArrays, 5000);
 
@@ -45,10 +57,12 @@ function displayDataInit(data) {
   const orderList = createOrdersArray(data.serving, data.queue);
   appendOrders(orderList);
 
-  //TODO ny function for hvert objekt
+  appendTaps(data.taps);
+  appendStorage(data.storage);
 }
 
 function determineDataToRemove(newData, oldData) {
+  //Orders
   const newOrderList = createOrdersArray(newData.serving, newData.queue);
   const oldOrderList = createOrdersArray(oldData.serving, oldData.queue);
   const ordersToRemove = getDataToRemove(newOrderList, oldOrderList, "id");
@@ -56,6 +70,7 @@ function determineDataToRemove(newData, oldData) {
 }
 
 function determineDataToAppend(newData, oldData) {
+  //Orders
   const newOrderList = createOrdersArray(newData.serving, newData.queue);
   const oldOrderList = createOrdersArray(oldData.serving, oldData.queue);
   const ordersToAppend = getDataToAppend(newOrderList, oldOrderList, "id");
@@ -71,12 +86,13 @@ function determineDataToUpdate(newData, oldData) {
   const newOrderList = createOrdersArray(newData.serving, newData.queue);
   updateOrders(newData.serving, newData.bartenders, newOrderList);
 
-  // const newOrderList = createOrdersArray(newData.serving, newData.queue);
-  // const oldOrderList = createOrdersArray(oldData.serving, oldData.queue);
-  // const ordersToUpdate = getDataToUpdate(newOrderList, oldOrderList, "id");
-  // updateOrders(ordersToUpdate);
+  //Taps
+  const tapsToUpdate = getDataToUpdate(newData.taps, oldData.taps, "id");
+  updateTaps(tapsToUpdate);
 
-  //  const servingsToUpdate = getDataToUpdate(newData.serving, oldData.serving, "id");
+  //Storage
+  const beersToUpdate = getDataToUpdate(newData.storage, oldData.storage, "name");
+  updateStorage(beersToUpdate);
 }
 
 function createOrdersArray(servings, queue) {

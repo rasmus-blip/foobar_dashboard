@@ -4,3 +4,55 @@
   display: flex;
   justify-content: space-around;
 }
+
+#beers .flex_container {
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+#beers li {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+
+  &.yellow p {
+    color: $yellow_clr;
+  }
+
+  &.red p {
+    color: $red_clr;
+  }
+}
+
+.tap_info {
+  width: 100%;
+}
+
+.beer_bar {
+  box-shadow: $horisontal_shadow;
+  width: 50%;
+  height: 4px;
+  border-radius: 5px;
+
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: inherit;
+    border-radius: inherit;
+    width: var(--bar-length);
+    background-color: hsl(var(--bar-color), 100%, 50%);
+    box-shadow: 0 0 4px hsl(var(--bar-color), 100%, 50%);
+  }
+}
+
+article {
+  display: none;
+}
+
+article.show {
+  display: block;
+}
