@@ -45,7 +45,7 @@ async function init() {
     btn.addEventListener("click", toggleBeerSections);
   });
 
-  setTimeout(updateDataArrays, 5000);
+  setInterval(updateDataArrays, 5000);
 
   async function updateDataArrays() {
     oldData = newData;
@@ -85,11 +85,7 @@ function determineDataToAppend(newData, oldData) {
 function determineDataToUpdate(newData, oldData) {
   updateTodaysNumbers(newData);
   //Personel
-  const bartendersToUpdate = getDataToUpdate(
-    newData.bartenders,
-    oldData.bartenders,
-    "name"
-  );
+  const bartendersToUpdate = getDataToUpdate(newData.bartenders, oldData.bartenders, "name");
   updateBartenders(bartendersToUpdate);
 
   //Orders
@@ -101,11 +97,7 @@ function determineDataToUpdate(newData, oldData) {
   updateTaps(tapsToUpdate);
 
   //Storage
-  const beersToUpdate = getDataToUpdate(
-    newData.storage,
-    oldData.storage,
-    "name"
-  );
+  const beersToUpdate = getDataToUpdate(newData.storage, oldData.storage, "name");
   updateStorage(beersToUpdate);
 }
 

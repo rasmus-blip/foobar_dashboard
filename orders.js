@@ -55,22 +55,10 @@ function calcWaitingTime(order) {
   const currentEpoch = Date.now();
   const differenceInMin = ((currentEpoch - order.startTime) / 60000).toFixed(2);
 
-  // Convert to string and separate the decimals from minutes
-  const timeInString = differenceInMin.toString();
-  const indexOfDot = timeInString.indexOf(".");
-  const minute = timeInString.substring(0, indexOfDot);
-  const secondsInstring = timeInString.substring(indexOfDot + 1);
-
-  // Convert decimals string to number and calc to seconds
-  let seconds = (Number(secondsInstring) * 0.6).toFixed(0);
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-
-  const result = minute + ":" + seconds;
+  const convertedTime = getTimeInSeconds(differenceInMin);
 
   const container = document.querySelector(`#orders [data-id="${order.id}"]`);
-  container.querySelector("figcaption").textContent = result;
+  container.querySelector("figcaption").textContent = convertedTime;
 
   if (differenceInMin > 1) {
     container.classList.add("red");
@@ -84,4 +72,21 @@ export function removeOrders(orders) {
   orders.forEach((order) => {
     container.querySelector(`li[data-id="${order.id}"]`).remove();
   });
+}
+
+export function getTimeInSeconds(decimals) {
+  // Convert to string and separate the decimals from minutes
+  const timeInString = decimals.toString();
+  const indexOfDot = timeInString.indexOf(".");
+  const minute = timeInString.substring(0, indexOfDot);
+  const secondsInstring = timeInString.substring(indexOfDot + 1);
+
+  // Convert decimals string to number and calc to seconds
+  let seconds = (Number(secondsInstring) * 0.6).toFixed(0);
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  const result = minute + ":" + seconds;
+  return result;
 }
