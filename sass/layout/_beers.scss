@@ -10,6 +10,23 @@
   margin-top: 15px;
 }
 
+// #beers ol {
+//   overflow-y: scroll;
+//   height: 100%;
+// }
+
+#taps,
+#storage {
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#beers ol {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 #beers li {
   display: flex;
   justify-content: space-between;
@@ -54,5 +71,5 @@ article {
 }
 
 article.show {
-  display: block;
+  display: flex;
 }
