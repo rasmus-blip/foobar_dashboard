@@ -20,6 +20,10 @@ import { updateTaps } from "./beers.js";
 import { appendStorage } from "./beers.js";
 import { updateStorage } from "./beers.js";
 
+//todays_numbers.js
+import { updateTodaysNumbers } from "./todays_numbers.js";
+import { setTodaysNumbers } from "./todays_numbers.js";
+
 //updateUI.js
 import { getDataToUpdate } from "./updateUI.js";
 import { getDataToAppend } from "./updateUI.js";
@@ -32,6 +36,8 @@ async function init() {
   let newData = await getJSON(url);
   let oldData = [];
 
+  setTodaysNumbers(newData);
+
   displayDataInit(newData);
 
   const beerSectionBtns = document.querySelectorAll("#beers button");
@@ -39,7 +45,7 @@ async function init() {
     btn.addEventListener("click", toggleBeerSections);
   });
 
-  setInterval(updateDataArrays, 5000);
+  setTimeout(updateDataArrays, 5000);
 
   async function updateDataArrays() {
     oldData = newData;
@@ -56,7 +62,6 @@ function displayDataInit(data) {
 
   const orderList = createOrdersArray(data.serving, data.queue);
   appendOrders(orderList);
-
   appendTaps(data.taps);
   appendStorage(data.storage);
 }
@@ -78,8 +83,13 @@ function determineDataToAppend(newData, oldData) {
 }
 
 function determineDataToUpdate(newData, oldData) {
+  updateTodaysNumbers(newData);
   //Personel
-  const bartendersToUpdate = getDataToUpdate(newData.bartenders, oldData.bartenders, "name");
+  const bartendersToUpdate = getDataToUpdate(
+    newData.bartenders,
+    oldData.bartenders,
+    "name"
+  );
   updateBartenders(bartendersToUpdate);
 
   //Orders
@@ -91,7 +101,11 @@ function determineDataToUpdate(newData, oldData) {
   updateTaps(tapsToUpdate);
 
   //Storage
-  const beersToUpdate = getDataToUpdate(newData.storage, oldData.storage, "name");
+  const beersToUpdate = getDataToUpdate(
+    newData.storage,
+    oldData.storage,
+    "name"
+  );
   updateStorage(beersToUpdate);
 }
 
