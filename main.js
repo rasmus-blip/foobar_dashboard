@@ -38,6 +38,8 @@ async function init() {
   let newData = await getJSON(url);
   let oldData = [];
 
+  setTheming();
+
   setLoadAnimDelay();
 
   setTodaysNumbers(newData);
@@ -58,6 +60,9 @@ async function init() {
     determineDataToRemove(newData, oldData);
     determineDataToAppend(newData, oldData);
     determineDataToUpdate(newData, oldData);
+
+    updateTodaysNumbers(newData);
+    setTheming();
 
     //remove loadingscreen
     document.querySelector("#loading").classList.remove("load");
@@ -90,7 +95,6 @@ function determineDataToAppend(newData, oldData) {
 }
 
 function determineDataToUpdate(newData, oldData) {
-  updateTodaysNumbers(newData);
   //Personel
   const bartendersToUpdate = getDataToUpdate(newData.bartenders, oldData.bartenders, "name");
   updateBartenders(bartendersToUpdate);
@@ -120,4 +124,13 @@ function createOrdersArray(servings, queue) {
   });
 
   return orders;
+}
+
+function setTheming() {
+  const hours = new Date().getHours();
+  if (hours >= 18 || hours <= 6) {
+    document.querySelector("body").classList = "darkmode";
+  } else {
+    document.querySelector("body").classList = "";
+  }
 }
