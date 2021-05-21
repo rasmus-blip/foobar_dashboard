@@ -44,6 +44,7 @@ export function updateTodaysNumbers(data) {
   updateBartenderSales(data.bartenders, data.serving);
 
   todaysNumbersObj.bestBartender = getBestBartender();
+  todaysNumbersObj.bestBeer = getBestBeer();
   data.serving.forEach(updateLongestWaitingTime);
   data.queue.forEach(updateLongestWaitingTime);
 
@@ -130,7 +131,21 @@ function getBestBartender() {
   let bestAmount = 0;
   bartenderSales.forEach((bartender) => {
     if (bartender.bartenderAmount > bestAmount) {
+      bestAmount = bartender.bartenderAmount;
       result = bartender.bartenderName;
+    }
+  });
+  return result;
+}
+
+function getBestBeer() {
+  let result = null;
+  let bestAmount = 0;
+  console.log(beersSold);
+  beersSold.forEach((beer) => {
+    if (beer.beerAmount > bestAmount) {
+      bestAmount = beer.beerAmount;
+      result = beer.beerName;
     }
   });
   return result;
@@ -149,7 +164,7 @@ function updateLongestWaitingTime(order) {
 function updateUi() {
   const todaysNrsCont = document.querySelector("#todays_numbers");
   todaysNrsCont.querySelector(".beers_sold span").textContent = todaysNumbersObj.soldBeers;
-  todaysNrsCont.querySelector(".best_beer span").textContent = "TODO";
+  todaysNrsCont.querySelector(".best_beer span").textContent = todaysNumbersObj.bestBeer;
   todaysNrsCont.querySelector(".best_bartender span").textContent = todaysNumbersObj.bestBartender;
   todaysNrsCont.querySelector(".longest_waiting_time span").textContent = todaysNumbersObj.longestWaitInMin;
 }
