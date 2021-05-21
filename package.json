@@ -24,6 +24,7 @@
     "vite": "^2.3.0"
   },
   "dependencies": {
+    "circle-chart": "^1.0.0",
     "epoch-timeago": "^1.1.9"
   }
 }

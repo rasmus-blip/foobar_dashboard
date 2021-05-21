@@ -28,17 +28,20 @@
 
 // coloring the icons
 [data-served-by="peter"] svg,
-[data-id="peter"] svg {
+[data-id="peter"] svg,
+#performance .peter {
   fill: $peter;
 }
 
 [data-served-by="dannie"] svg,
-[data-id="dannie"] svg {
+[data-id="dannie"] svg,
+#performance .dannie {
   fill: $dannie;
 }
 
 [data-served-by="jonas"] svg,
-[data-id="jonas"] svg {
+[data-id="jonas"] svg,
+#performance .jonas {
   fill: $jonas;
 }
 

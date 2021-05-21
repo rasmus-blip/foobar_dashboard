@@ -1,4 +1,5 @@
 "use strict";
+import CircleChart from "circle-chart";
 
 import { getTimeInSeconds } from "./orders.js";
 
@@ -16,6 +17,19 @@ const bartenderSales = [];
 
 const receivedOrders = [];
 
+const chartDefinitions = [];
+
+const chartObject = {
+  $container: document.querySelector("#performance figure"),
+  isPie: true,
+  animated: false,
+  middleCircleColor: "transparent",
+  background: "transparent",
+  definition: chartDefinitions,
+};
+
+let chartToUpdate = null;
+
 export function setTodaysNumbers(data) {
   // push each beer from the storage array into the beersSold array
   data.storage.forEach((beer) => {
@@ -26,6 +40,7 @@ export function setTodaysNumbers(data) {
     beersSold.push(beerObj);
   });
 
+  // push each bartender from the bartender array into the bartenderSales array
   data.bartenders.forEach((bartender) => {
     const bartenderObj = {
       bartenderName: bartender.name,
@@ -35,7 +50,30 @@ export function setTodaysNumbers(data) {
     bartenderSales.push(bartenderObj);
   });
 
+  setCircleChart();
+
   updateTodaysNumbers(data);
+  updateCircleChart();
+}
+
+function setCircleChart() {
+  bartenderSales.forEach((bartender) => {
+    const nameLower = bartender.bartenderName.toLowerCase();
+    const defObject = { label: bartender.bartenderName, name: nameLower, cls: nameLower, value: 25 };
+    chartDefinitions.push(defObject);
+  });
+
+  chartToUpdate = new CircleChart(chartObject);
+}
+
+function updateCircleChart() {
+  const statsToUpdate = {};
+
+  bartenderSales.forEach((bartender) => {
+    statsToUpdate[bartender.bartenderName.toLowerCase()] = bartender.bartenderAmount;
+  });
+
+  chartToUpdate.update(statsToUpdate);
 }
 
 export function updateTodaysNumbers(data) {
@@ -47,6 +85,8 @@ export function updateTodaysNumbers(data) {
   todaysNumbersObj.bestBeer = getBestBeer();
   data.serving.forEach(updateLongestWaitingTime);
   data.queue.forEach(updateLongestWaitingTime);
+
+  updateCircleChart();
 
   updateUi();
 }
@@ -141,7 +181,6 @@ function getBestBartender() {
 function getBestBeer() {
   let result = null;
   let bestAmount = 0;
-  console.log(beersSold);
   beersSold.forEach((beer) => {
     if (beer.beerAmount > bestAmount) {
       bestAmount = beer.beerAmount;
