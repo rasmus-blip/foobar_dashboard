@@ -1,6 +1,11 @@
 export function toggleBeerSections() {
   console.log();
   if (this.classList.contains("clicked") === false) {
+    // click sound
+    document.querySelector("audio").currentTime = 0;
+    document.querySelector("audio").volume = 0.6;
+    document.querySelector("audio").play();
+    window.navigator.vibrate(200);
     document.querySelector("#taps_btn").classList.toggle("clicked");
     document.querySelector("#storage_btn").classList.toggle("clicked");
     document.querySelector("#taps").classList.toggle("show");
@@ -19,7 +24,9 @@ export function appendTaps(taps) {
     klon.querySelector(".tap_info p").textContent = tap.beer;
 
     const barLength = ((tap.level / tap.capacity) * 100).toFixed(0) + "%";
-    klon.querySelector(".beer_bar").style.setProperty("--bar-length", barLength);
+    klon
+      .querySelector(".beer_bar")
+      .style.setProperty("--bar-length", barLength);
     const barColor = ((tap.level / tap.capacity) * 100).toFixed(0);
     klon.querySelector(".beer_bar").style.setProperty("--bar-color", barColor);
 
@@ -34,9 +41,13 @@ export function updateTaps(taps) {
     const container = document.querySelector(`#taps li[data-id="${tap.id}"]`);
     container.querySelector(".tap_info p").textContent = tap.beer;
     const barLength = ((tap.level / tap.capacity) * 100).toFixed(0) + "%";
-    container.querySelector(".beer_bar").style.setProperty("--bar-length", barLength);
+    container
+      .querySelector(".beer_bar")
+      .style.setProperty("--bar-length", barLength);
     const barColor = ((tap.level / tap.capacity) * 100).toFixed(0);
-    container.querySelector(".beer_bar").style.setProperty("--bar-color", barColor);
+    container
+      .querySelector(".beer_bar")
+      .style.setProperty("--bar-color", barColor);
   });
 }
 
@@ -59,7 +70,9 @@ export function appendStorage(beers) {
 
 export function updateStorage(beers) {
   beers.forEach((beer) => {
-    const container = document.querySelector(`#storage li[data-id="${beer.name}"]`);
+    const container = document.querySelector(
+      `#storage li[data-id="${beer.name}"]`
+    );
     container.querySelector(".beer_kegs").textContent = beer.amount;
     setStorageColor(container, beer.amount);
   });

@@ -85,7 +85,11 @@ function determineDataToAppend(newData, oldData) {
 function determineDataToUpdate(newData, oldData) {
   updateTodaysNumbers(newData);
   //Personel
-  const bartendersToUpdate = getDataToUpdate(newData.bartenders, oldData.bartenders, "name");
+  const bartendersToUpdate = getDataToUpdate(
+    newData.bartenders,
+    oldData.bartenders,
+    "name"
+  );
   updateBartenders(bartendersToUpdate);
 
   //Orders
@@ -97,7 +101,11 @@ function determineDataToUpdate(newData, oldData) {
   updateTaps(tapsToUpdate);
 
   //Storage
-  const beersToUpdate = getDataToUpdate(newData.storage, oldData.storage, "name");
+  const beersToUpdate = getDataToUpdate(
+    newData.storage,
+    oldData.storage,
+    "name"
+  );
   updateStorage(beersToUpdate);
 }
 
@@ -115,13 +123,3 @@ function createOrdersArray(servings, queue) {
   return orders;
 }
 
-//inital displaying UI;
-// sammenligner new med old - dvs vi får alt dataen
-// append
-
-//update UI
-//sammenligner new med old - dvs vi får noget af dataen
-//append
-//sammeligner old med med
-//remove
-//Find elementer der staig eksisterer men har ændret sig (brug data-set)
