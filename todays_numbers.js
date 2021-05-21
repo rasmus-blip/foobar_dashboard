@@ -5,6 +5,7 @@ import { getTimeInSeconds } from "./orders.js";
 
 const todaysNumbersObj = {
   soldBeers: 0,
+  servedBeers: 0,
   bestBeer: "",
   bestBartender: "",
   longestWait: 0,
@@ -20,7 +21,7 @@ const receivedOrders = [];
 const chartDefinitions = [];
 
 const chartObject = {
-  $container: document.querySelector("#performance figure"),
+  $container: document.querySelector("#performance .container"),
   isPie: true,
   animated: false,
   middleCircleColor: "transparent",
@@ -57,12 +58,26 @@ export function setTodaysNumbers(data) {
 }
 
 function setCircleChart() {
+  // foreach bartender
   bartenderSales.forEach((bartender) => {
+    //an object with bartender data is pushed to chartDef
     const nameLower = bartender.bartenderName.toLowerCase();
-    const defObject = { label: bartender.bartenderName, name: nameLower, cls: nameLower, value: 25 };
+    const defObject = {
+      label: bartender.bartenderName,
+      name: nameLower,
+      cls: nameLower,
+      value: 25,
+    };
     chartDefinitions.push(defObject);
+
+    //li element for each bartender is created and appended to DOM
+    const container = document.querySelector("#performance ul");
+    const newLi = document.createElement("li");
+    newLi.classList = bartender.bartenderName;
+    container.appendChild(newLi);
   });
 
+  //creating chart
   chartToUpdate = new CircleChart(chartObject);
 }
 
@@ -70,10 +85,25 @@ function updateCircleChart() {
   const statsToUpdate = {};
 
   bartenderSales.forEach((bartender) => {
-    statsToUpdate[bartender.bartenderName.toLowerCase()] = bartender.bartenderAmount;
+    statsToUpdate[bartender.bartenderName.toLowerCase()] =
+      bartender.bartenderAmount;
+    updatePerformanceList(bartender);
   });
 
   chartToUpdate.update(statsToUpdate);
+}
+
+function updatePerformanceList(bartender) {
+  const container = document.querySelector(
+    `#performance .${bartender.bartenderName}`
+  );
+  const amount = (
+    (bartender.bartenderAmount / todaysNumbersObj.servedBeers) *
+    100
+  ).toFixed(0);
+  container.textContent = `${bartender.bartenderName}: ${amount}%`;
+
+  //TODO: set bullet for the bartender
 }
 
 export function updateTodaysNumbers(data) {
@@ -128,8 +158,12 @@ function updateBartenderSales(bartenders, servings) {
       bartenderFromList[0].servingId = bartender.servingCustomer;
 
       //And adds this order, to amount of beers served
-      const amountToAdd = getAmountFromString(bartender.servingCustomer, servings);
+      const amountToAdd = getAmountFromString(
+        bartender.servingCustomer,
+        servings
+      );
       bartenderFromList[0].bartenderAmount += amountToAdd;
+      todaysNumbersObj.servedBeers += amountToAdd;
     }
 
     //Closure function for filtering the right bartender from global bartender-array
@@ -202,8 +236,12 @@ function updateLongestWaitingTime(order) {
 
 function updateUi() {
   const todaysNrsCont = document.querySelector("#todays_numbers");
-  todaysNrsCont.querySelector(".beers_sold span").textContent = todaysNumbersObj.soldBeers;
-  todaysNrsCont.querySelector(".best_beer span").textContent = todaysNumbersObj.bestBeer;
-  todaysNrsCont.querySelector(".best_bartender span").textContent = todaysNumbersObj.bestBartender;
-  todaysNrsCont.querySelector(".longest_waiting_time span").textContent = todaysNumbersObj.longestWaitInMin;
+  todaysNrsCont.querySelector(".beers_sold span").textContent =
+    todaysNumbersObj.soldBeers;
+  todaysNrsCont.querySelector(".best_beer span").textContent =
+    todaysNumbersObj.bestBeer;
+  todaysNrsCont.querySelector(".best_bartender span").textContent =
+    todaysNumbersObj.bestBartender;
+  todaysNrsCont.querySelector(".longest_waiting_time span").textContent =
+    todaysNumbersObj.longestWaitInMin;
 }
