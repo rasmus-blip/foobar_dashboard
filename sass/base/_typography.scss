@@ -14,20 +14,20 @@ h2 {
 p,
 li {
   font-size: 1rem;
-  color: #898ca1;
+  color: $para_clr;
 }
 
 h2 {
   font-weight: 400;
   font-size: 1.5rem;
-  color: #898ca1;
+  color: $para_clr;
 }
 
 h1,
 #beers button {
   font-weight: 400;
   font-size: 2rem;
-  color: #cb70a1;
+  color: $heading_clr;
   position: relative;
   margin-bottom: 20px;
 }

@@ -1,5 +1,5 @@
 // COLORS
-$bg_clr: #e6ebef;
+$bg_clr: var(--bg-clr);
 $heading_clr: #cb70a1;
 $para_clr: #898ca1;
 
@@ -12,8 +12,22 @@ $yellow_clr: #ffaa4e;
 $red_clr: #ff545d;
 
 // tints
-$light: #f7fbfe;
-$shadow: #c4c8cb;
+$light: var(--light);
+$shadow: var(--shadow);
+
+//DARKMODE - class on body
+.darkmode {
+  --bg-clr: #1e1e1e;
+  --light: #282727;
+  --shadow: #121111;
+}
+
+//LIGHTMODE
+:root {
+  --bg-clr: #e6ebef;
+  --light: #f7fbfe;
+  --shadow: #c4c8cb;
+}
 
 //
 //
