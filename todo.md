@@ -19,6 +19,8 @@ mobileversion - VIGTIG
 loading screen - VIGTIG
 console.log with text
 
+themes
+
 svg fetch
 
 vibrate API
