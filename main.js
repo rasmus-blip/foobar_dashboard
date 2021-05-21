@@ -4,6 +4,8 @@ import "./sass/style.scss";
 
 import { getJSON } from "./rest_actions.js";
 
+import { setLoadAnimDelay } from "./loading.js";
+
 // personel.js
 import { displayBartenders } from "./personel.js";
 import { updateBartenders } from "./personel.js";
@@ -36,6 +38,8 @@ async function init() {
   let newData = await getJSON(url);
   let oldData = [];
 
+  setLoadAnimDelay();
+
   setTodaysNumbers(newData);
 
   displayDataInit(newData);
@@ -54,6 +58,9 @@ async function init() {
     determineDataToRemove(newData, oldData);
     determineDataToAppend(newData, oldData);
     determineDataToUpdate(newData, oldData);
+
+    //remove loadingscreen
+    document.querySelector("#loading").classList.remove("load");
   }
 }
 
@@ -85,11 +92,7 @@ function determineDataToAppend(newData, oldData) {
 function determineDataToUpdate(newData, oldData) {
   updateTodaysNumbers(newData);
   //Personel
-  const bartendersToUpdate = getDataToUpdate(
-    newData.bartenders,
-    oldData.bartenders,
-    "name"
-  );
+  const bartendersToUpdate = getDataToUpdate(newData.bartenders, oldData.bartenders, "name");
   updateBartenders(bartendersToUpdate);
 
   //Orders
@@ -101,11 +104,7 @@ function determineDataToUpdate(newData, oldData) {
   updateTaps(tapsToUpdate);
 
   //Storage
-  const beersToUpdate = getDataToUpdate(
-    newData.storage,
-    oldData.storage,
-    "name"
-  );
+  const beersToUpdate = getDataToUpdate(newData.storage, oldData.storage, "name");
   updateStorage(beersToUpdate);
 }
 
@@ -122,4 +121,3 @@ function createOrdersArray(servings, queue) {
 
   return orders;
 }
-
