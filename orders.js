@@ -22,11 +22,12 @@ function updateServings(servings, bartenders) {
   servings.forEach((serving) => {
     //TODO: make this less ninja
     const servedBy = bartenders.filter(compareData)[0].name.toLowerCase();
-    const container = document.querySelector(`#orders li[data-id="${serving.id}"]`);
+    const container = document.querySelector(
+      `#orders li[data-id="${serving.id}"]`
+    );
 
     container.querySelector(".bartender_icon").dataset.servedBy = servedBy;
     container.querySelector(".bartender_icon").classList.remove("hide");
-    document.querySelector(`#orders li[data-id="${serving.id}"] p`).style.color = "teal";
 
     function compareData(bartender) {
       if (serving.id === bartender.servingCustomer) {
