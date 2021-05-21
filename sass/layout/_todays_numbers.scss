@@ -1,0 +1,21 @@
+@import "../abstracts/";
+
+#todays_numbers ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#todays_numbers li::before {
+  content: "•";
+  display: inline-flex;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+  line-height: 0px;
+  width: 15px;
+  height: 15px;
+  color: $heading_clr;
+  border: 5px solid $bg_clr;
+  box-shadow: $small_inner;
+  border-radius: 50%;
+}
