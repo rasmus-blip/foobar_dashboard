@@ -10,20 +10,20 @@ make icons in orders a my smaller - VIGTIG
 
 order beerlist max width - VIGTIG
 
-colors on beerbars - VIGTIG
+colors on beerbars - Vdone
 
 mobileversion - VIGTIG
 
 ::before ::after overlays on icons - VIGTIG
 
-loading screen - VIGTIG
+loading screen - done
 console.log with text
 
-themes
+themes, done
 
 svg fetch
 
-vibrate API
+vibrate API - done
 
 sounds DONE
 

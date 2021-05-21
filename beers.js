@@ -27,10 +27,18 @@ export function appendTaps(taps) {
     klon.querySelector("li").dataset.id = tap.id;
     klon.querySelector(".tap_info p").textContent = tap.beer;
 
-    const barLength = ((tap.level / tap.capacity) * 100).toFixed(0) + "%";
-    klon.querySelector(".beer_bar").style.setProperty("--bar-length", barLength);
-    const barColor = ((tap.level / tap.capacity) * 100).toFixed(0);
-    klon.querySelector(".beer_bar").style.setProperty("--bar-color", barColor);
+    const barLength = ((tap.level / tap.capacity) * 100).toFixed(0);
+    klon
+      .querySelector(".beer_bar")
+      .style.setProperty("--bar-length", barLength + "%");
+
+    if (barLength >= 50) {
+      klon.querySelector(".beer_bar").classList = "beer_bar green";
+    } else if (barLength >= 20) {
+      klon.querySelector(".beer_bar").classList = "beer_bar yellow";
+    } else {
+      klon.querySelector(".beer_bar").classList = "beer_bar red";
+    }
 
     klon.querySelector(".tap_id").textContent = `#${tap.id + 1}`;
 
@@ -42,10 +50,19 @@ export function updateTaps(taps) {
   taps.forEach((tap) => {
     const container = document.querySelector(`#taps li[data-id="${tap.id}"]`);
     container.querySelector(".tap_info p").textContent = tap.beer;
-    const barLength = ((tap.level / tap.capacity) * 100).toFixed(0) + "%";
-    container.querySelector(".beer_bar").style.setProperty("--bar-length", barLength);
-    const barColor = ((tap.level / tap.capacity) * 100).toFixed(0);
-    container.querySelector(".beer_bar").style.setProperty("--bar-color", barColor);
+    const barLength = ((tap.level / tap.capacity) * 100).toFixed(0);
+    container
+      .querySelector(".beer_bar")
+      .style.setProperty("--bar-length", barLength + "%");
+    if (barLength > 50) {
+      container.querySelector(".beer_bar").classList = "beer_bar green";
+    } else if (barLength > 20) {
+      container.querySelector(".beer_bar").classList = "beer_bar yellow";
+    } else if (barLength > 10) {
+      container.querySelector(".beer_bar").classList = "beer_bar red";
+    } else {
+      container.querySelector(".beer_bar").classList = "beer_bar red pulse";
+    }
   });
 }
 
@@ -68,7 +85,9 @@ export function appendStorage(beers) {
 
 export function updateStorage(beers) {
   beers.forEach((beer) => {
-    const container = document.querySelector(`#storage li[data-id="${beer.name}"]`);
+    const container = document.querySelector(
+      `#storage li[data-id="${beer.name}"]`
+    );
     container.querySelector(".beer_kegs").textContent = beer.amount;
     setStorageColor(container, beer.amount);
   });

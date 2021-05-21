@@ -50,7 +50,6 @@
   width: 50%;
   height: 4px;
   border-radius: 5px;
-
   position: relative;
 
   &::after {
@@ -61,8 +60,36 @@
     height: inherit;
     border-radius: inherit;
     width: var(--bar-length);
-    background-color: hsl(var(--bar-color), 100%, 50%);
-    box-shadow: 0 0 4px hsl(var(--bar-color), 100%, 50%);
+    transition: background-color 3s, width 3s, box-shadow 3s;
+  }
+
+  &.green::after {
+    background-color: $green_clr;
+    box-shadow: 0px 0px 4px $green_clr;
+  }
+
+  &.yellow::after {
+    background-color: $yellow_clr;
+    box-shadow: 0px 0px 4px $yellow_clr;
+  }
+  &.red::after {
+    background-color: $red_clr;
+    box-shadow: 0px 0px 4px $red_clr;
+  }
+  &.red.pulse::after {
+    animation-name: pulse_kf;
+    animation-iteration-count: infinite;
+    animation-duration: 0.4s;
+    animation-direction: alternate;
+  }
+}
+
+@keyframes pulse_kf {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
   }
 }
 
