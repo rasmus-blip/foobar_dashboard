@@ -2,7 +2,7 @@
 
 scroll bars positioning - DONE
 
-bullets on todays number + bartender performance - VIGTIG
+bullets on todays number + bartender performance - DONE
 
 flex bartender perfomance li elements vertically - VIGTIG
 

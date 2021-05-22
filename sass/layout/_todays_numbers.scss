@@ -12,7 +12,8 @@
   }
 }
 
-#todays_numbers .bullet {
+#todays_numbers .bullet,
+#performance .bullet {
   width: 15px;
   height: 15px;
   color: $heading_clr;
@@ -29,6 +30,30 @@
     height: 7px;
     background-color: $heading_clr;
     border-radius: 50%;
+  }
+}
+
+#performance {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & .Peter .bullet::before {
+    background-color: $peter;
+  }
+
+  & .Dannie .bullet::before {
+    background-color: $dannie;
+  }
+
+  & .Jonas .bullet::before {
+    background-color: $jonas;
+  }
+
+  & .txt {
+  }
+  & li {
+    display: inline-flex;
   }
 }
 

@@ -74,6 +74,13 @@ function setCircleChart() {
     const container = document.querySelector("#performance ul");
     const newLi = document.createElement("li");
     newLi.classList = bartender.bartenderName;
+    const bullet = document.createElement("span");
+    bullet.classList = "bullet";
+    const txt = document.createElement("span");
+    txt.classList = "txt";
+
+    newLi.appendChild(bullet);
+    newLi.appendChild(txt);
     container.appendChild(newLi);
   });
 
@@ -95,7 +102,7 @@ function updateCircleChart() {
 function updatePerformanceList(bartender) {
   const container = document.querySelector(`#performance .${bartender.bartenderName}`);
   const amount = ((bartender.bartenderAmount / todaysNumbersObj.servedBeers) * 100).toFixed(0);
-  container.textContent = `${bartender.bartenderName}: ${amount}%`;
+  container.querySelector(".txt").textContent = `${bartender.bartenderName}: ${amount}%`;
 
   //TODO: set bullet for the bartender
 }
