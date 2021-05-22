@@ -16,7 +16,7 @@ mobileversion - DONE-ish
 
 Header menu funktionalitet - Done
 
-::before ::after overlays on icons - VIGTIG
+::before ::after overlays on icons - DONE
 
 loading screen - DONE
 console.log with text

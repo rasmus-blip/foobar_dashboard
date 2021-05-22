@@ -11,6 +11,10 @@ $green_clr: #2cdc90;
 $yellow_clr: #ffaa4e;
 $red_clr: #ff545d;
 
+//overlays
+$outer_light: var(--outer-light);
+$inner_light: var(--inner-light);
+
 // tints
 $light: var(--light);
 $shadow: var(--shadow);
@@ -27,6 +31,9 @@ $shadow: var(--shadow);
   --bg-clr: #e6ebef;
   --light: #f7fbfe;
   --shadow: #c4c8cb;
+
+  --outer-light: linear-gradient(315deg, rgba(230, 235, 239, 0) 0%, rgba(230, 235, 224, 0.5) 100%);
+  --inner-light: linear-gradient(135deg, rgba(230, 235, 239, 0) 0%, rgba(230, 235, 224, 0.5) 100%);
 }
 
 //
