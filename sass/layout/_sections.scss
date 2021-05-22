@@ -20,7 +20,7 @@ section {
 
 @media only screen and (min-width: $tablet) {
   section {
-    display: flex;
+    display: flex !important;
     border-radius: 10px;
     padding: 15px;
     box-shadow: $large_outer;

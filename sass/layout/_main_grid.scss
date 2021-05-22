@@ -14,7 +14,7 @@ main {
 
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    grid-gap: 15px;
+    grid-gap: 20px;
     height: 100vh;
 
     & #personel {
@@ -35,6 +35,14 @@ main {
 
     & #todays_numbers {
       grid-area: 5 / 1 / 6 / 3;
+    }
+  }
+
+  @media (min-aspect-ratio: 3/4) {
+    main {
+      //keeping min aspact ratio as 16/9
+
+      height: 125vw;
     }
   }
 }
