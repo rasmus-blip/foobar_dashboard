@@ -4,7 +4,7 @@ scroll bars positioning - DONE
 
 bullets on todays number + bartender performance - DONE
 
-flex bartender perfomance li elements vertically - VIGTIG
+flex bartender perfomance li elements vertically - DONE
 
 make icons in orders a my smaller - VIGTIG
 
