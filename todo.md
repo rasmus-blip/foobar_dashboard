@@ -12,7 +12,7 @@ order beerlist max width - DONE
 
 colors on beerbars - Vdone
 
-mobileversion - VIGTIG
+mobileversion - DONE-ish
 
 Header menu funktionalitet - Done
 
