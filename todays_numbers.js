@@ -85,8 +85,7 @@ function updateCircleChart() {
   const statsToUpdate = {};
 
   bartenderSales.forEach((bartender) => {
-    statsToUpdate[bartender.bartenderName.toLowerCase()] =
-      bartender.bartenderAmount;
+    statsToUpdate[bartender.bartenderName.toLowerCase()] = bartender.bartenderAmount;
     updatePerformanceList(bartender);
   });
 
@@ -94,13 +93,8 @@ function updateCircleChart() {
 }
 
 function updatePerformanceList(bartender) {
-  const container = document.querySelector(
-    `#performance .${bartender.bartenderName}`
-  );
-  const amount = (
-    (bartender.bartenderAmount / todaysNumbersObj.servedBeers) *
-    100
-  ).toFixed(0);
+  const container = document.querySelector(`#performance .${bartender.bartenderName}`);
+  const amount = ((bartender.bartenderAmount / todaysNumbersObj.servedBeers) * 100).toFixed(0);
   container.textContent = `${bartender.bartenderName}: ${amount}%`;
 
   //TODO: set bullet for the bartender
@@ -158,10 +152,7 @@ function updateBartenderSales(bartenders, servings) {
       bartenderFromList[0].servingId = bartender.servingCustomer;
 
       //And adds this order, to amount of beers served
-      const amountToAdd = getAmountFromString(
-        bartender.servingCustomer,
-        servings
-      );
+      const amountToAdd = getAmountFromString(bartender.servingCustomer, servings);
       bartenderFromList[0].bartenderAmount += amountToAdd;
       todaysNumbersObj.servedBeers += amountToAdd;
     }
@@ -236,12 +227,8 @@ function updateLongestWaitingTime(order) {
 
 function updateUi() {
   const todaysNrsCont = document.querySelector("#todays_numbers");
-  todaysNrsCont.querySelector(".beers_sold span").textContent =
-    todaysNumbersObj.soldBeers;
-  todaysNrsCont.querySelector(".best_beer span").textContent =
-    todaysNumbersObj.bestBeer;
-  todaysNrsCont.querySelector(".best_bartender span").textContent =
-    todaysNumbersObj.bestBartender;
-  todaysNrsCont.querySelector(".longest_waiting_time span").textContent =
-    todaysNumbersObj.longestWaitInMin;
+  todaysNrsCont.querySelector(".beers_sold .txt").textContent = todaysNumbersObj.soldBeers;
+  todaysNrsCont.querySelector(".best_beer .txt").textContent = todaysNumbersObj.bestBeer;
+  todaysNrsCont.querySelector(".best_bartender .txt").textContent = todaysNumbersObj.bestBartender;
+  todaysNrsCont.querySelector(".longest_waiting_time .txt").textContent = todaysNumbersObj.longestWaitInMin;
 }

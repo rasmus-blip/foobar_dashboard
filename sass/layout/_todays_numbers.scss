@@ -3,21 +3,33 @@
 #todays_numbers ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+
+  & li {
+    //to align vertically bullets in li
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
-#todays_numbers li::before {
-  content: "•";
-  display: inline-flex;
-  font-size: 2rem;
-  justify-content: center;
-  align-items: center;
-  line-height: 0px;
+#todays_numbers .bullet {
   width: 15px;
   height: 15px;
   color: $heading_clr;
-  border: 5px solid $bg_clr;
-  box-shadow: $small_inner;
+  box-shadow: $small_outer;
   border-radius: 50%;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background-color: $heading_clr;
+    border-radius: 50%;
+  }
 }
 
 #performance figure {

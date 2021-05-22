@@ -1,6 +1,6 @@
 #TODO
 
-scroll bars positioning - VIGTIG
+scroll bars positioning - DONE
 
 bullets on todays number + bartender performance - VIGTIG
 
