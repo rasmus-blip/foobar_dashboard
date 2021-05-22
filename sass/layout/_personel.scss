@@ -3,10 +3,15 @@
 #personel ul {
   overflow-y: scroll;
   height: 100%;
+  margin-top: 40px;
 
   & li {
     display: flex;
     margin-top: 40px;
     max-width: 90%;
+  }
+
+  & li:first-child {
+    margin-top: 0;
   }
 }

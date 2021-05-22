@@ -8,9 +8,10 @@
   & ol {
     overflow-y: scroll;
     height: 100%;
+    margin-top: 40px;
   }
 
-  & li {
+  & li:not(:first-child) {
     margin-top: 40px;
   }
 
