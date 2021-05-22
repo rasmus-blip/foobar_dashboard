@@ -6,28 +6,32 @@ bullets on todays number + bartender performance - DONE
 
 flex bartender perfomance li elements vertically - DONE
 
-make icons in orders a my smaller - VIGTIG
+make icons in orders a my smaller - DONE
 
-order beerlist max width - VIGTIG
+order beerlist max width - DONE
 
 colors on beerbars - Vdone
 
 mobileversion - VIGTIG
 
+Header menu funktionalitet - Done
+
 ::before ::after overlays on icons - VIGTIG
 
-loading screen - done
+loading screen - DONE
 console.log with text
 
-themes, done
+themes, DONE
 
 svg fetch
 
-vibrate API - done
+vibrate API - DONE
 
-sounds DONE
+sounds DONE - maybe manipulate the sound a bit
 
 check different browsers - VIGTIG
 
 js cleanup
 comments all over the javascript!
+
+reconsider colors in dark mode - VIGTIG

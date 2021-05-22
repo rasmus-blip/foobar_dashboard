@@ -5,6 +5,7 @@ import "./sass/style.scss";
 import { getJSON } from "./rest_actions.js";
 
 import { setLoadAnimDelay } from "./loading.js";
+import { mobileMenuSetup } from "./mobile_menu.js";
 
 // personel.js
 import { displayBartenders } from "./personel.js";
@@ -34,13 +35,14 @@ import { getDataToRemove } from "./updateUI.js";
 window.addEventListener("DOMContentLoaded", init);
 
 async function init() {
+  setTheming();
+  setLoadAnimDelay();
+
+  mobileMenuSetup();
+
   const url = "https://foobarfirefjerdedele.herokuapp.com/";
   let newData = await getJSON(url);
   let oldData = [];
-
-  setTheming();
-
-  setLoadAnimDelay();
 
   setTodaysNumbers(newData);
 

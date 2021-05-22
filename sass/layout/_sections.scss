@@ -7,10 +7,15 @@
 section {
   background-color: $bg_clr;
   flex-direction: column;
+  display: none !important;
 
   &.open {
-    display: flex;
+    display: flex !important;
   }
+}
+
+#performance {
+  margin-top: 50px;
 }
 
 @media only screen and (min-width: $tablet) {
@@ -19,6 +24,10 @@ section {
     border-radius: 10px;
     padding: 15px;
     box-shadow: $large_outer;
+  }
+
+  #performance {
+    margin-top: 0;
   }
 }
 
