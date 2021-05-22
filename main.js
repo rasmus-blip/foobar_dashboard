@@ -131,8 +131,8 @@ function createOrdersArray(servings, queue) {
 function setTheming() {
   const hours = new Date().getHours();
   if (hours >= 18 || hours <= 6) {
-    document.querySelector("body").classList = "darkmode";
+    document.querySelector("body").classList.add("darkmode");
   } else {
-    document.querySelector("body").classList = "";
+    document.querySelector("body").classList.remove("darkmode");
   }
 }
