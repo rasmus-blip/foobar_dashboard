@@ -11,6 +11,11 @@
     display: inline-flex;
     align-items: center;
   }
+
+  & .txt {
+    margin-left: 0.5ch;
+    font-weight: 700;
+  }
 }
 
 #performance {
