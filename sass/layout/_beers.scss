@@ -49,7 +49,7 @@
 .beer_bar {
   box-shadow: $horisontal_shadow;
   width: 50%;
-  height: 4px;
+  height: 7px;
   border-radius: 5px;
   margin-top: 5px;
   position: relative;
@@ -67,16 +67,16 @@
 
   &.green::after {
     background-color: $green_clr;
-    box-shadow: 0px 0px 4px $green_clr;
+    // box-shadow: 0px 0px 4px $green_clr;
   }
 
   &.yellow::after {
     background-color: $yellow_clr;
-    box-shadow: 0px 0px 4px $yellow_clr;
+    // box-shadow: 0px 0px 4px $yellow_clr;
   }
   &.red::after {
     background-color: $red_clr;
-    box-shadow: 0px 0px 4px $red_clr;
+    // box-shadow: 0px 0px 4px $red_clr;
   }
   &.red.pulse::after {
     animation-name: pulse_kf;
