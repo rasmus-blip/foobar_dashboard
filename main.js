@@ -37,7 +37,6 @@ window.addEventListener("DOMContentLoaded", init);
 async function init() {
   setTheming();
   setLoadAnimDelay();
-
   mobileMenuSetup();
 
   const url = "https://foobarfirefjerdedele.herokuapp.com/";
@@ -101,10 +100,6 @@ function determineDataToUpdate(newData, oldData) {
   const bartendersToUpdate = getDataToUpdate(newData.bartenders, oldData.bartenders, "name");
   updateBartenders(bartendersToUpdate);
 
-  //Orders
-  const newOrderList = createOrdersArray(newData.serving, newData.queue);
-  updateOrders(newData.serving, newData.bartenders, newOrderList);
-
   //Taps
   const tapsToUpdate = getDataToUpdate(newData.taps, oldData.taps, "id");
   updateTaps(tapsToUpdate);
@@ -112,6 +107,11 @@ function determineDataToUpdate(newData, oldData) {
   //Storage
   const beersToUpdate = getDataToUpdate(newData.storage, oldData.storage, "name");
   updateStorage(beersToUpdate);
+
+  //Orders
+  //Orders updates waiting time, therefore its always the whole array - no need for getDataToUpdate
+  const newOrderList = createOrdersArray(newData.serving, newData.queue);
+  updateOrders(newData.serving, newData.bartenders, newOrderList);
 }
 
 function createOrdersArray(servings, queue) {

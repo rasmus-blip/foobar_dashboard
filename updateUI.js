@@ -4,19 +4,19 @@ export function getDataToUpdate(newData, oldData, id) {
   const result = [];
 
   newData.forEach((newObject) => {
+    //NOTE: filter always returns an array, even though we only need 1 object.
     const objectToUpdate = oldData.filter(compareData);
 
+    //If the object-id's are the same, but parts of the object(.stringify) have changed, return the object
     function compareData(oldObject) {
-      if (
-        JSON.stringify(oldObject) !== JSON.stringify(newObject) &&
-        oldObject[id] === newObject[id]
-      ) {
+      if (oldObject[id] === newObject[id] && JSON.stringify(oldObject) !== JSON.stringify(newObject)) {
         return newObject;
       } else {
         return false;
       }
     }
 
+    //Fallback if the array is empty
     if (objectToUpdate[0] !== undefined) {
       result.push(objectToUpdate[0]);
     }
@@ -24,16 +24,6 @@ export function getDataToUpdate(newData, oldData, id) {
 
   return result;
 }
-
-// export function getDataToAppend(newData, oldData, id) {
-//   const indenticalObjects = findIdenticalObjects(newData, oldData, id);
-//   const dataToAppend = newData;
-//   for (let i = 0; i < indenticalObjects.length; i++) {
-//     if (indenticalObjects[i][id] === dataToAppend[i][id]) {
-//       dataToAppend.shift();
-//     }
-//   }
-// }
 
 export function getDataToAppend(newData, oldData, id) {
   const result = [...newData];
