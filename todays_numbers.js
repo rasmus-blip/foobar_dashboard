@@ -119,7 +119,7 @@ function updateCircleChart() {
   chartToUpdate.update(statsToUpdate);
 }
 
-// Updates the circle chart and li-elements
+// Updates the performance li-elements
 function updatePerformanceList(bartender) {
   const container = document.querySelector(`#performance .${bartender.bartenderName}`);
   const amount = ((bartender.bartenderAmount / todaysNumbersObj.servedBeers) * 100).toFixed(0);
