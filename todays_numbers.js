@@ -77,7 +77,6 @@ export function updateTodaysNumbers(data) {
 // PERFORMANCE / CIRCLE CHART
 // Initially builds the chartDefinitions array (NPM module), and appends an li elemt forEach bartender
 function setCircleChart() {
-  // foreach bartender
   bartenderSales.forEach((bartender) => {
     //an object with bartender data is pushed to chartDef
     const nameLower = bartender.bartenderName.toLowerCase();
@@ -89,7 +88,7 @@ function setCircleChart() {
     };
     chartDefinitions.push(defObject);
 
-    //li element for each bartender is created and appended to DOM
+    //Create li elm for bartender
     const container = document.querySelector("#performance ul");
     const newLi = document.createElement("li");
     newLi.classList = bartender.bartenderName;
