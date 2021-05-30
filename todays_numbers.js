@@ -13,13 +13,10 @@ const todaysNumbersObj = {
 };
 
 const beersSold = [];
-
 const bartenderSales = [];
-
 const receivedOrders = [];
 
 const chartDefinitions = [];
-
 const chartObject = {
   $container: document.querySelector("#performance .container"),
   isPie: true,
@@ -31,6 +28,7 @@ const chartObject = {
 
 let chartToUpdate = null;
 
+// Initially builds the beersSold and bartenderObj
 export function setTodaysNumbers(data) {
   // push each beer from the storage array into the beersSold array
   data.storage.forEach((beer) => {
@@ -57,6 +55,27 @@ export function setTodaysNumbers(data) {
   updateCircleChart();
 }
 
+// Controller for updating todays numbers
+export function updateTodaysNumbers(data) {
+  doesOrderExist(data.serving);
+  doesOrderExist(data.queue);
+  updateBartenderSales(data.bartenders, data.serving);
+
+  todaysNumbersObj.bestBartender = getBestBartender();
+  todaysNumbersObj.bestBeer = getBestBeer();
+  data.serving.forEach(updateLongestWaitingTime);
+  data.queue.forEach(updateLongestWaitingTime);
+
+  updateCircleChart();
+
+  updateUi();
+}
+
+//
+//
+//
+// PERFORMANCE / CIRCLE CHART
+// Initially builds the chartDefinitions array (NPM module), and appends an li elemt forEach bartender
 function setCircleChart() {
   // foreach bartender
   bartenderSales.forEach((bartender) => {
@@ -88,6 +107,7 @@ function setCircleChart() {
   chartToUpdate = new CircleChart(chartObject);
 }
 
+// Updates the circle chart (NPM module)
 function updateCircleChart() {
   const statsToUpdate = {};
 
@@ -99,29 +119,18 @@ function updateCircleChart() {
   chartToUpdate.update(statsToUpdate);
 }
 
+// Updates the circle chart and li-elements
 function updatePerformanceList(bartender) {
   const container = document.querySelector(`#performance .${bartender.bartenderName}`);
   const amount = ((bartender.bartenderAmount / todaysNumbersObj.servedBeers) * 100).toFixed(0);
   container.querySelector(".txt").textContent = `${bartender.bartenderName}: ${amount}%`;
-
-  //TODO: set bullet for the bartender
 }
 
-export function updateTodaysNumbers(data) {
-  doesOrderExist(data.serving);
-  doesOrderExist(data.queue);
-  updateBartenderSales(data.bartenders, data.serving);
-
-  todaysNumbersObj.bestBartender = getBestBartender();
-  todaysNumbersObj.bestBeer = getBestBeer();
-  data.serving.forEach(updateLongestWaitingTime);
-  data.queue.forEach(updateLongestWaitingTime);
-
-  updateCircleChart();
-
-  updateUi();
-}
-
+//
+//
+//
+// BEERS SOLD
+// Excludes orders that are already included in the statics - only update the statistic with new orders.
 function doesOrderExist(data) {
   data.forEach((orderList) => {
     const doesExist = receivedOrders.includes(orderList.id);
@@ -133,6 +142,7 @@ function doesOrderExist(data) {
   });
 }
 
+// Updates total beers sold with the new orders form doesOrdersExist
 function updateBeersSold(beer) {
   const beerToUpdate = beersSold.filter(compareBeerNames);
 
@@ -148,6 +158,24 @@ function updateBeersSold(beer) {
   }
 }
 
+// Returns the most sold beer from beerSold array.
+function getBestBeer() {
+  let result = null;
+  let bestAmount = 0;
+  beersSold.forEach((beer) => {
+    if (beer.beerAmount > bestAmount) {
+      bestAmount = beer.beerAmount;
+      result = beer.beerName;
+    }
+  });
+  return result;
+}
+
+//
+//
+//
+// bartenderSales - global array
+// Updates the objects in bartenderSales
 function updateBartenderSales(bartenders, servings) {
   //Foreach bartender, find get the bartender-object from global bartender-array
   bartenders.forEach((bartender) => {
@@ -159,7 +187,7 @@ function updateBartenderSales(bartenders, servings) {
       bartenderFromList[0].servingId = bartender.servingCustomer;
 
       //And adds this order, to amount of beers served
-      const amountToAdd = getAmountFromString(bartender.servingCustomer, servings);
+      const amountToAdd = getAmountFromOrderArray(bartender.servingCustomer, servings);
       bartenderFromList[0].bartenderAmount += amountToAdd;
       todaysNumbersObj.servedBeers += amountToAdd;
     }
@@ -175,7 +203,8 @@ function updateBartenderSales(bartenders, servings) {
   });
 }
 
-function getAmountFromString(id, servings) {
+// Returns the amount of objects / beers, in order-array
+function getAmountFromOrderArray(id, servings) {
   //Find the order that matches the bartenders serving-id
   const theOrder = servings.filter(compareIds);
 
@@ -198,6 +227,7 @@ function getAmountFromString(id, servings) {
   }
 }
 
+// Returns best bartender with most beers served - for "top bartender"
 function getBestBartender() {
   let result = null;
   let bestAmount = 0;
@@ -210,18 +240,10 @@ function getBestBartender() {
   return result;
 }
 
-function getBestBeer() {
-  let result = null;
-  let bestAmount = 0;
-  beersSold.forEach((beer) => {
-    if (beer.beerAmount > bestAmount) {
-      bestAmount = beer.beerAmount;
-      result = beer.beerName;
-    }
-  });
-  return result;
-}
-
+//
+//
+//
+// LONGEST WATING TIME
 function updateLongestWaitingTime(order) {
   const currentEpoch = Date.now();
   const differenceInMin = ((currentEpoch - order.startTime) / 60000).toFixed(2);
@@ -232,6 +254,7 @@ function updateLongestWaitingTime(order) {
   }
 }
 
+// Updates the UI with the new numbers from todaysNumbersObj
 function updateUi() {
   const todaysNrsCont = document.querySelector("#todays_numbers");
   todaysNrsCont.querySelector(".beers_sold .txt").textContent = todaysNumbersObj.soldBeers;
