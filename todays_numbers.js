@@ -254,6 +254,9 @@ function updateLongestWaitingTime(order) {
   }
 }
 
+//
+//
+//
 // Updates the UI with the new numbers from todaysNumbersObj
 function updateUi() {
   const todaysNrsCont = document.querySelector("#todays_numbers");
