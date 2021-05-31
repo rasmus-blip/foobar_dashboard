@@ -16,17 +16,7 @@ const beersSold = [];
 const bartenderSales = [];
 const receivedOrders = [];
 
-const chartDefinitions = [];
-const chartObject = {
-  $container: document.querySelector("#performance .container"),
-  isPie: true,
-  animated: false,
-  middleCircleColor: "transparent",
-  background: "transparent",
-  definition: chartDefinitions,
-};
-
-let chartToUpdate = null;
+let theCircleChart = null;
 
 // Initially builds the beersSold and bartenderObj
 export function setTodaysNumbers(data) {
@@ -77,6 +67,8 @@ export function updateTodaysNumbers(data) {
 // PERFORMANCE / CIRCLE CHART
 // Initially builds the chartDefinitions array (NPM module), and appends an li elemt forEach bartender
 function setCircleChart() {
+  const chartDefinitions = [];
+
   bartenderSales.forEach((bartender) => {
     //an object with bartender data is pushed to chartDef
     const nameLower = bartender.bartenderName.toLowerCase();
@@ -88,22 +80,34 @@ function setCircleChart() {
     };
     chartDefinitions.push(defObject);
 
-    //Create li elm for bartender
-    const container = document.querySelector("#performance ul");
-    const newLi = document.createElement("li");
-    newLi.classList = bartender.bartenderName;
-    const bullet = document.createElement("span");
-    bullet.classList = "bullet";
-    const txt = document.createElement("span");
-    txt.classList = "txt";
-
-    newLi.appendChild(bullet);
-    newLi.appendChild(txt);
-    container.appendChild(newLi);
+    setupChartLi(bartender);
   });
 
-  //creating chart
-  chartToUpdate = new CircleChart(chartObject);
+  const chartObject = {
+    $container: document.querySelector("#performance .container"),
+    isPie: true,
+    animated: false,
+    middleCircleColor: "transparent",
+    background: "transparent",
+    definition: chartDefinitions,
+  };
+
+  theCircleChart = new CircleChart(chartObject);
+}
+
+//Create li elm for bartender
+function setupChartLi(bartender) {
+  const container = document.querySelector("#performance ul");
+  const newLi = document.createElement("li");
+  newLi.classList = bartender.bartenderName;
+  const bullet = document.createElement("span");
+  bullet.classList = "bullet";
+  const txt = document.createElement("span");
+  txt.classList = "txt";
+
+  newLi.appendChild(bullet);
+  newLi.appendChild(txt);
+  container.appendChild(newLi);
 }
 
 // Updates the circle chart (NPM module)
@@ -115,7 +119,7 @@ function updateCircleChart() {
     updatePerformanceList(bartender);
   });
 
-  chartToUpdate.update(statsToUpdate);
+  theCircleChart.update(statsToUpdate);
 }
 
 // Updates the performance li-elements
