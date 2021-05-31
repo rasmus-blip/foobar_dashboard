@@ -184,7 +184,7 @@ function updateBartenderSales(bartenders, servings) {
   bartenders.forEach((bartender) => {
     const bartenderFromList = bartenderSales.filter(compareBartenders)[0];
 
-    //Only update the sales-amount if dont already have included that order
+    //Only update the sales-amount if the order-id isnt already included
     if (bartender.servingCustomer !== bartenderFromList.servingId) {
       //then we update the current order in the global array
       bartenderFromList.servingId = bartender.servingCustomer;
