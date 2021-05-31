@@ -182,16 +182,16 @@ function getBestBeer() {
 function updateBartenderSales(bartenders, servings) {
   //Foreach bartender, find get the bartender-object from global bartender-array
   bartenders.forEach((bartender) => {
-    const bartenderFromList = bartenderSales.filter(compareBartenders);
+    const bartenderFromList = bartenderSales.filter(compareBartenders)[0];
 
     //Only update the sales-amount if dont already have included that order
-    if (bartender.servingCustomer !== bartenderFromList[0].servingId) {
+    if (bartender.servingCustomer !== bartenderFromList.servingId) {
       //then we update the current order in the global array
-      bartenderFromList[0].servingId = bartender.servingCustomer;
+      bartenderFromList.servingId = bartender.servingCustomer;
 
       //And adds this order, to amount of beers served
       const amountToAdd = getAmountFromOrderArray(bartender.servingCustomer, servings);
-      bartenderFromList[0].bartenderAmount += amountToAdd;
+      bartenderFromList.bartenderAmount += amountToAdd;
       todaysNumbersObj.servedBeers += amountToAdd;
     }
 
