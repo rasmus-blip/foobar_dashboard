@@ -28,19 +28,19 @@ header button {
   }
 
   &:nth-of-type(1)::after {
-    background: url("./icons/person_light.svg");
+    background: url("../icons/person_light.svg");
   }
 
   &:nth-of-type(2)::after {
-    background: url("./icons/order.svg");
+    background: url("../icons/order.svg");
   }
 
   &:nth-of-type(3)::after {
-    background: url("./icons/beer.svg");
+    background: url("../icons/beer.svg");
   }
 
   &:nth-of-type(4)::after {
-    background: url("./icons/chart.svg");
+    background: url("../icons/chart.svg");
   }
 
   &.open {
@@ -51,19 +51,19 @@ header button {
 .darkmode header button,
 .dark4ever header button {
   &:nth-of-type(1)::after {
-    background: url("./icons/person_dark.svg");
+    background: url("../icons/person_dark.svg");
   }
 
   &:nth-of-type(2)::after {
-    background: url("./icons/order_dark.svg");
+    background: url("../icons/order_dark.svg");
   }
 
   &:nth-of-type(3)::after {
-    background: url("./icons/beer_dark.svg");
+    background: url("../icons/beer_dark.svg");
   }
 
   &:nth-of-type(4)::after {
-    background: url("./icons/chart_dark.svg");
+    background: url("../icons/chart_dark.svg");
   }
 }
 
