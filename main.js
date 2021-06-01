@@ -65,7 +65,7 @@ async function init() {
     updateTodaysNumbers(newData);
     setTheming();
 
-    //remove loadingscreen
+    //remove loadingscreen - should be fired just after init-display, but we think look so cool and deserves more spotlight :)
     document.querySelector("#loading").classList.remove("load");
   }
 }
