@@ -73,15 +73,15 @@ export function removeOrders(orders) {
   });
 }
 
-export function getTimeInSeconds(decimals) {
+export function getTimeInSeconds(number) {
   // Convert to string and separate the decimals from minutes
-  const timeInString = decimals.toString();
+  const timeInString = number.toString();
   const indexOfDot = timeInString.indexOf(".");
   const minute = timeInString.substring(0, indexOfDot);
-  const secondsInstring = timeInString.substring(indexOfDot + 1);
+  const decimalsInString = timeInString.substring(indexOfDot + 1);
 
   // Convert decimals string to number and calc to seconds
-  let seconds = (Number(secondsInstring) * 0.6).toFixed(0);
+  let seconds = (Number(decimalsInString) * 0.6).toFixed(0);
   if (seconds < 10) {
     seconds = "0" + seconds;
   }
