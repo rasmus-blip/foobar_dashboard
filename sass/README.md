@@ -1,36 +1,28 @@
 sass/
 |
 |– abstracts/
+| |– \_index.scss
 | |– \_variables.scss # Sass Variables
-| |– \_mixins.scss # Sass Mixins
-|
-|– vendors/
-| |– \_bootstrap.scss # Bootstrap
 |
 |– base/
+| |– \_index.scss
 | |– \_reset.scss # Reset/normalize
 | |– \_typography.scss # Typography rules
 |
 |– layout/
-| |– \_navigation.scss # Navigation
-| |– \_grid.scss # Grid system
-| |– \_header.scss # Header
-| |– \_footer.scss # Footer
-| |– \_sidebar.scss # Sidebar
-| |– \_forms.scss # Forms
+| |– \_index.scss
+| |– \_header.scss # Header in mobile
+| |– \_loading.scss # Loading screen
+| |– \_main_grid.scss # Main grid
+| |– \_orders.scss # "Orders" section
+| |– \_beers.scss # "Beers" section
+| |– \_personel.scss # "Personel" section
+| |– \_todays_numbers.scss # "Todays numbers" section
 |
 |– components/
+| |– \_index.scss
 | |– \_buttons.scss # Buttons
-| |– \_carousel.scss # Carousel
-| |– \_cover.scss # Cover
-| |– \_dropdown.scss # Dropdown
+| |– \_icons.scss # Icons
+| |– \_scrollbars.scss # Scrollbars
 |
-|– pages/
-| |– \_home.scss # Home specific styles
-| |– \_contact.scss # Contact specific styles
-|
-|– themes/
-| |– \_theme.scss # Default theme
-| |– \_admin.scss # Admin theme
-|
-– main.scss # Main Sass input file
+– style.scss # Main Sass input file
